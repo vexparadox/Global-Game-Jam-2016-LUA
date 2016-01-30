@@ -24,11 +24,6 @@ function editor.update(dt)
     if input.right then
         camera.x = camera.x - 1
     end
-
-    if #editor.collisiontemp == 1 then
-        print(editor.collisiontemp[1].x,
-              editor.collisiontemp[1].y)
-    end
 end
 
 function editor.drawinterface()
@@ -37,10 +32,11 @@ function editor.drawinterface()
     love.graphics.print("Mode: "..editor.mode, 10, 10)
     love.graphics.print("Entities: "..#editor.scene, 10, 30)
     love.graphics.print("Layer: "..editor.layer, 10, 50)
-    love.graphics.print("Mouse: "..mx-camera.x..", "..my-camera.y, 10, 70)
+    love.graphics.print("Mouse: "..mx-camera.x..
+        ", "..my-camera.y, 10, 70)
 
     for _, e in ipairs(editor.scene) do
-        local e = editor.mouseover(mx, my)
+        local e = editor.mouseoverentity(mx, my)
         if e ~= nil then
             love.graphics.rectangle("line",
                 e.x+camera.x, e.y+camera.y,
@@ -54,17 +50,21 @@ function editor.draw()
     camera.draw(editor.scene)
 
     for _, e in ipairs(editor.horizontal) do
-        love.graphics.line(e[1].x, e[1].y, e[2].x, e[2].y)
+        love.graphics.line(e.x1, e.y1, e.x2, e.y2)
     end
 
     for _, e in ipairs(editor.vertical) do
-        love.graphics.line(e[1].x, e[1].y, e[2].x, e[2].y)
+        love.graphics.line(e.x1, e.y1, e.x2, e.y2)
     end
 
     editor.drawinterface()
 end
 
-function editor.mouseover(x, y)
+function editor.loadscene(scene)
+
+end
+
+function editor.mouseoverentity(x, y)
     x = x - camera.x
     y = y - camera.y
     for i, e in pairs(editor.scene) do
@@ -74,6 +74,10 @@ function editor.mouseover(x, y)
             return e, i
         end
     end
+end
+
+function editor.mouseovercollider(x, y)
+
 end
 
 function editor.addentity(x, y, z, name)
@@ -94,17 +98,13 @@ end
 function editor.addcollider(x1, y1, x2, y2)
     if x1 == x2 then
         editor.vertical[#editor.vertical+1] = {
-            name = name,
-            x = x,
-            y = y,
-            z = z
+            x1 = x1, y1 = y1,
+            x2 = x2, y2 = y2
         }
     elseif y1 == y2 then
         editor.horizontal[#editor.horizontal+1] = {
-            name = name,
-            x = x,
-            y = y,
-            z = z
+            x1 = x1, y1 = y1,
+            x2 = x2, y2 = y2
         }
     end
 end
@@ -122,10 +122,10 @@ function editor.mousecontrol(x, y, button)
         if button == 1 then
             editor.addentity(x, y, editor.layer, editor.entityname)
         elseif button == 2 then
-            local _, i = editor.mouseover(x, y)
+            local _, i = editor.mouseoverentity(x, y)
             editor.removeentity(i)
         end
-    elseif editor.mode == "collision" then
+    elseif editor.mode == "collision horizontal" then
         if button == 1 then
             editor.collisiontemp[#editor.collisiontemp+1] = {
                 x = x,
@@ -134,7 +134,22 @@ function editor.mousecontrol(x, y, button)
             if #editor.collisiontemp == 2 then
                 editor.addcollider(editor.collisiontemp[1].x,
                                    editor.collisiontemp[1].y,
-                                   editor.collisiontemp[2].y,
+                                   editor.collisiontemp[2].x,
+                                   editor.collisiontemp[1].y)
+                editor.collisiontemp = {}
+            end
+        elseif button == 2 then
+        end
+    elseif editor.mode == "collision vertical" then
+        if button == 1 then
+            editor.collisiontemp[#editor.collisiontemp+1] = {
+                x = x,
+                y = y,
+            }
+            if #editor.collisiontemp == 2 then
+                editor.addcollider(editor.collisiontemp[1].x,
+                                   editor.collisiontemp[1].y,
+                                   editor.collisiontemp[1].x,
                                    editor.collisiontemp[2].y)
                 editor.collisiontemp = {}
             end
@@ -154,8 +169,10 @@ function editor.keyboardcontrol(key)
 
     if key == "space" then
         if editor.mode == "entity" then
-            editor.mode = "collision"
-        elseif editor.mode == "collision" then
+            editor.mode = "collision horizontal"
+        elseif editor.mode == "collision horizontal" then
+            editor.mode = "collision vertical"
+        elseif editor.mode == "collision vertical" then
             editor.mode = "entity"
         end
     end

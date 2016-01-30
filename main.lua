@@ -13,7 +13,6 @@ require "collision"
 
 function love.load()
 	entity.load()
-    s = scene.load("data/scenes/test.lua")
 end
 
 function love.update(dt)
