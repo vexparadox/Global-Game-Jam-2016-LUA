@@ -11,8 +11,8 @@ entity = {
         height = false,
         state = false,
     },
-    tile1 = {
-        sprite = love.graphics.newImage("data/tile1.png"),
+    tree = {
+        sprite = love.graphics.newImage("data/tree.png"),
         width = false,
         height = false,
         state = false,
@@ -32,5 +32,5 @@ entity = {
 }
 
 function entity.draw(entity)
-    
+    love.graphics.draw(entity.sprite, entity.x, entity.y)
 end
