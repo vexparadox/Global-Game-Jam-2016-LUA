@@ -13,6 +13,7 @@ settings = {
         down =  "dpdown",
         left =  "dpleft",
         right = "dpright",
+        interact = "a",
     },
 
     shortcuts = {
