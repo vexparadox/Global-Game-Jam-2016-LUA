@@ -24,10 +24,10 @@ function scene.write(scene, horizontal, vertical, path)
     -- horizontal collision
     for _, e in ipairs(horizontal) do
         data = data .. "{ "
-        data = data .. "x1 = '" .. e.x1 .. "', "
-        data = data .. "y1 = '" .. e.y1 .. "', "
-        data = data .. "x2 = '" .. e.x2 .. "', "
-        data = data .. "y2 = '" .. e.y2 .. "', "
+        data = data .. "x1 = " .. e.x1 .. ", "
+        data = data .. "y1 = " .. e.y1 .. ", "
+        data = data .. "x2 = " .. e.x2 .. ", "
+        data = data .. "y2 = " .. e.y2 .. ", "
         data = data .. " },\n"
     end
 
@@ -36,10 +36,10 @@ function scene.write(scene, horizontal, vertical, path)
     -- vertical collision
     for _, e in ipairs(vertical) do
         data = data .. "{ "
-        data = data .. "x1 = '" .. e.x1 .. "', "
-        data = data .. "y1 = '" .. e.y1 .. "', "
-        data = data .. "x2 = '" .. e.x2 .. "', "
-        data = data .. "y2 = '" .. e.y2 .. "', "
+        data = data .. "x1 = " .. e.x1 .. ", "
+        data = data .. "y1 = " .. e.y1 .. ", "
+        data = data .. "x2 = " .. e.x2 .. ", "
+        data = data .. "y2 = " .. e.y2 .. ", "
         data = data .. " },\n"
     end
 
