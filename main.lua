@@ -7,6 +7,7 @@ require "entity"
 
 function love.load()
 	entity.load()
+
 end
 
 function love.update(dt)

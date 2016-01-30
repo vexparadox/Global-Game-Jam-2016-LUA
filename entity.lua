@@ -1,6 +1,6 @@
 entity = {
     player = {
-        sprite = love.graphics.newImage("data/player.png"),
+        sprite = love.graphics.newImage("data/image/player.png"),
         width = false,
         height = false,
         state = false,
@@ -12,7 +12,7 @@ entity = {
     --     state = false,
     -- },
     tree = {
-        sprite = love.graphics.newImage("data/tree.png"),
+        sprite = love.graphics.newImage("data/image/orangetree.png"),
         width = false,
         height = false,
         state = false,
@@ -32,7 +32,7 @@ entity = {
 }
 
 function entity.load()
-    for _, e in ipairs(entity)
+    for _, e in ipairs(entity) do
         e.width, e.height = e.sprite:getDimensions()
     end
 end
