@@ -6,7 +6,8 @@ require "util"
 require "entity"
 require "scene"
 require "camera"
-require ""
+require "state"
+require "editor"
 
 function love.load()
 	entity.load()
