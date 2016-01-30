@@ -5,6 +5,7 @@ require "settings"
 require "util"
 require "entity"
 require "scene"
+require "camera"
 
 function love.load()
 	entity.load()
@@ -16,7 +17,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    scene.draw(s)
+    camera.draw(s)
 end
 
 function love.quit()
