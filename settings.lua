@@ -5,6 +5,7 @@ settings = {
         down =  { "down",  "s" },
         left =  { "left",  "a" },
         right = { "right", "d" },
+        interact = { "space", "e"},
     },
 
     gamepad = {
