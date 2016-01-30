@@ -2,10 +2,10 @@ editor = {
     scene = {},
     horizontal = {},
     vertical = {},
-    layer = 1,
+    layer = -1,
     entityname = "tree",
     mode = "entity",
-    collisiontemp = {}
+    collisiontemp = {},
 }
 
 function editor.update(dt)
@@ -83,8 +83,8 @@ end
 function editor.addentity(x, y, z, name)
     editor.scene[#editor.scene+1] = {
         name = name,
-        x = x,
-        y = y,
+        x = x - entity.static[name].width/2,
+        y = y - entity.static[name].height/2,
         z = z
     }
 end
@@ -163,17 +163,26 @@ function editor.keyboardcontrol(key)
         editor.layer = editor.layer - 1
     end
 
-    if key == '=' or key == "+" then
+    if key == "=" or key == "+" then
         editor.layer = editor.layer + 1
     end
 
-    if key == "space" then
-        if editor.mode == "entity" then
-            editor.mode = "collision horizontal"
-        elseif editor.mode == "collision horizontal" then
-            editor.mode = "collision vertical"
-        elseif editor.mode == "collision vertical" then
-            editor.mode = "entity"
-        end
+    if key == "o" then
+        scene.write(editor.scene,
+                    editor.horizontal,
+                    editor.vertical,
+                    "out.lua")
+    end
+
+    if key == "1" then
+        editor.mode = "entity"
+    end
+
+    if key == "2" then
+        editor.mode = "collision horizontal"
+    end
+
+    if key == "3" then
+        editor.mode = "collision vertical"
     end
 end

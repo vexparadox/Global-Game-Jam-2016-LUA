@@ -5,7 +5,7 @@ camera = {
 
 function camera.draw(scene)
     table.sort(scene, function (a, b)
-        return a.z < b.z
+        return a.z < b.z or a.y < b.y
     end)
 
     love.graphics.push()
