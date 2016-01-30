@@ -1,5 +1,5 @@
 state = {
-    current = "game"
+    current = "editor"
 }
 
 state.game = {}
@@ -23,8 +23,5 @@ function state.pause.draw()
 end
 
 state.editor = {}
-function state.editor.update(dt)
-end
-
-function state.editor.draw()
-end
+state.editor.update = editor.update
+state.editor.draw = editor.draw

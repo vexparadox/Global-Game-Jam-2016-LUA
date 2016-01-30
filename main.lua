@@ -1,13 +1,13 @@
 io.stdout:setvbuf("no")
 
-require "input"
-require "settings"
-require "util"
-require "entity"
-require "scene"
 require "camera"
-require "state"
 require "editor"
+require "entity"
+require "input"
+require "scene"
+require "settings"
+require "state"
+require "util"
 
 function love.load()
 	entity.load()

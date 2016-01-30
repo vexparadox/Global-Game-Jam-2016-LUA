@@ -4,6 +4,7 @@ function scene.load(path)
     return dofile(path)
 end
 
+-- TODO: use less appends to save on creating temp strings
 function scene.write(scene, path)
     local data = "return {\n"
 

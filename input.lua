@@ -16,6 +16,11 @@ function love.keypressed(key, scancode, isrepeat)
                 end
             end
         end
+
+        -- NOTE: remove this when shipping
+        if state.current == "editor" then
+            editor.keyboardcontrol(key)
+        end
     end
 end
 
@@ -47,4 +52,10 @@ end
 
 function love.gamepadaxis(joystick, axis, value)
     -- local deadzone = 0.1
+end
+
+function love.mousepressed(x, y, button)
+    if state.current == "editor" then
+        editor.mousecontrol(x, y, button)
+    end
 end
