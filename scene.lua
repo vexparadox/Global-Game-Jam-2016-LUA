@@ -5,7 +5,7 @@ function scene.load(file)
 end
 
 function scene.draw(scene)
-    for _, e in ipairs(scene)
+    for _, e in ipairs(scene) do
         entity.draw(e)
     end
 end

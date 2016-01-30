@@ -40,5 +40,6 @@ function entity.load()
 end
 
 function entity.draw(e)
-    love.graphics.draw(entity.static[e.name], e.x, e.y)
+    love.graphics.draw(entity.static[e.name].sprite,
+        e.x, e.y)
 end
