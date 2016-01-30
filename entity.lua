@@ -2,6 +2,11 @@ entity = {
     static = {
         player = {
             sprite = love.graphics.newImage("data/image/player.png"),
+            update = function()
+                if input.up then
+                    camera.y = camera.y + 6
+                end
+            end,
             width = false,
             height = false,
             state = false,
