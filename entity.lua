@@ -40,6 +40,6 @@ function entity.load()
 end
 
 function entity.draw(e)
-    love.graphics.draw(entity.static[e.name].sprite,
-        e.x, e.y)
+    -- NOTE: width and height are scale factors of the screen size eg. w/windowWidth
+    love.graphics.draw(entity.static[e.name].sprite, e.x, e.y)
 end
