@@ -13,10 +13,10 @@ function love.load()
 end
 
 function love.update(dt)
-	for _, e in ipairs(s) do
-		if entity.static[e.name].update ~= nil then
-			entity.static[e.name].update()
-		end
+    for _, e in ipairs(s) do
+        if entity.static[e.name].update ~= nil then
+            entity.static[e.name].update()
+        end
     end
 end
 

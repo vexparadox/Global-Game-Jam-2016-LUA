@@ -3,9 +3,10 @@ entity = {
         player = {
             sprite = love.graphics.newImage("data/image/player.png"),
             update = function()
-                if input.up then
-                    camera.y = camera.y + 6
-                end
+                if input.up then camera.y = camera.y -2 end
+                if input.down then camera.y = camera.y +2 end
+                if input.right then camera.x = camera.x +2 end
+                if input.left then camera.x = camera.x -2 end
             end,
             width = false,
             height = false,
