@@ -8,6 +8,8 @@ require "scene"
 require "settings"
 require "state"
 require "util"
+require "editor"
+require "collision"
 
 function love.load()
 	entity.load()
