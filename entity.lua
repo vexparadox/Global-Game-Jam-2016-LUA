@@ -32,11 +32,11 @@ entity = {
 }
 
 function entity.load()
-    for _, e in ipairs(entity) do
+    for _, e in pairs(entity) do
         e.width, e.height = e.sprite:getDimensions()
     end
 end
 
-function entity.draw(entity)
-    love.graphics.draw(entity.sprite, entity.x, entity.y)
+function entity.draw(e)
+    love.graphics.draw(e.sprite, e.x, e.y)
 end
